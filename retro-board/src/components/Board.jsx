@@ -67,12 +67,12 @@ function Board () {
                             return (
                                     <tr>
                                         <td>{itm.name}</td>
-                                        {/* <td> */}
+                                        <td>
                                         <button className="btn btn-success" onClick={() => deleteItem(idx)}>Delete Item</button>
                                         <button onClick={() => moveItem(idx, 'R')}>Right</button>
                                         <button>Like</button>
                                         <button>Dislike</button>
-                                        {/* </td> */}
+                                        </td>
                                     </tr>
                                 );
                             }   
@@ -125,4 +125,3 @@ function Board () {
 }
 
 export default Board;
-
