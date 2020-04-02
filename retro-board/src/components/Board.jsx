@@ -1,22 +1,21 @@
 import React , {useState } from "react";
 
+{/* https://github.com/AlbanyCanCodeCourses/JavaScriptFrameworks2020/tree/master/projects/1-retro-board */}
 
 function Board () {
 
     const [items, setItems] = useState([]);
     
     const addItem = itemType => {
-        // console.log(newItem);
-        // console.log(itemType);
         switch (itemType) {
             case 'well':
-                setItems([...items, {type:itemType, name:newWellItem, like:' '}]);        
+                setItems([...items, {type:itemType, name:'', likes:0, dislikes:0}]);        
                 break;
             case 'improve':
-                setItems([...items, {type:itemType, name:improveItem, like:' '}]);        
+                setItems([...items, {type:itemType, name:'', likes:0, dislikes:0}]);        
                 break;
             case 'action':
-                setItems([...items, {type:itemType, name:newActionItem, like:' '}]);        
+                setItems([...items, {type:itemType, name:'', likes:0, dislikes:0}]);        
                 break;
             default: alert('illegal type');
         };
@@ -25,15 +24,6 @@ function Board () {
     const deleteItem = delIndex => {
         setItems(items.filter((itm, currentIndex) => currentIndex !== delIndex));
     }
-    
-    const [newWellItem, setNewWellItem] = useState('');
-    const handleWellItemChange = e => setNewWellItem(e.target.value);
-    
-    const [improveItem, setImproveItem] = useState('');
-    const handleImproveItemChange = e => setImproveItem(e.target.value);
-
-    const [newActionItem, setNewActionItem] = useState('');
-    const handleActionItemChange = e => setNewActionItem(e.target.value);
 
     const moveItem = (idx, dir) => {
         switch (dir) {
@@ -50,52 +40,58 @@ function Board () {
 
    const updateItem = (idx, value) => {
     items[idx].name = value;
+    setItems([...items]);
    } 
+
+   const addLike = (idx) => {
+       items[idx].likes += 1;
+       setItems([...items]);
+    }
+
+   const addDislike = (idx) => {
+    items[idx].dislikes += 1;
+    setItems([...items]);
+ }
 
     return (
         <>
         {/* Went well */}
         <div>
             <h2>Went Well</h2>
-            <input type="textarea" placeholder="Enter text here" onChange={handleWellItemChange} value={newWellItem}/>
             <button onClick={() => addItem('well')}>Add Item</button>
-            <table className="table table-compact">
-            <thead></thead>
-                <tbody>
-                    {items.map((itm, idx) => {
-                        if (itm.type === 'well') {
-                            return (
-                                    <tr>
-                                        <td>{itm.name}</td>
-                                        <td>
-                                        <button className="btn btn-success" onClick={() => deleteItem(idx)}>Delete Item</button>
-                                        <button onClick={() => moveItem(idx, 'R')}>Right</button>
-                                        <button>Like</button>
-                                        <button>Dislike</button>
-                                        </td>
-                                    </tr>
-                                );
-                            }   
-                        })}
-                    </tbody>
-            </table>
+            {items.map((itm, idx) => {
+                if (itm.type === 'well') {
+                    return (
+                        <div>
+                            <input type="textarea" placeholder='new item' value={items[idx].name} onChange={(e) => updateItem(idx, e.target.value)}/>
+                            <button className="btn btn-success" onClick={() => deleteItem(idx)}>Delete Item</button>
+                            <button  onClick={() => moveItem(idx, 'R')}>Right</button>
+                            <button onClick={() => addLike(idx)}>Like</button>
+                            <input type="input" value={items[idx].likes}/>
+                            <button onClick={() => addDislike(idx)}>Dislike</button>
+                            <input type="input" value={items[idx].dislikes}/>
+                        </div>
+                    );
+                }   
+            })}        
         </div>
         {/* To Improve   */}
         <div>
             <h2>To Improve</h2>
-            {/* <input type="textarea" placeholder="Enter text here" onChange={handleImproveItemChange} value={newImproveItem}/> */}
             <button onClick={() => addItem('improve')}>Add Item</button>
             {items.map((itm, idx) => {
                 if (itm.type === 'improve') {
                     return (
                         <div>
-                            <input type="textarea" placeholder={itm.name} onChange={(e) => updateItem(idx, e.target.value)}/>
-                            {/* <input type="textarea" value={itm.name}/> */}
+                            <input type="textarea" placeholder='new item' value={items[idx].name} onChange={(e) => updateItem(idx, e.target.value)}/>
                             <button className="btn btn-success" onClick={() => deleteItem(idx)}>Delete Item</button>
+                            {/* when moving to BoardItem, need to condition buttons based on where they are */}
                             <button onClick={() => moveItem(idx, 'L')}>Left</button>
                             <button  onClick={() => moveItem(idx, 'R')}>Right</button>
-                            <button>Like</button>
-                            <button>Dislike</button>
+                            <button onClick={() => addLike(idx)}>Like</button>
+                            <input type="input" value={items[idx].likes}/>
+                            <button onClick={() => addDislike(idx)}>Dislike</button>
+                            <input type="input" value={items[idx].dislikes}/>
                         </div>
                     );
                 }   
@@ -104,21 +100,22 @@ function Board () {
         {/* Action Items             */}
         <div>
             <h2>Action Items</h2>
-            <input type="textarea" placeholder="Enter text here" onChange={handleActionItemChange} value={newActionItem}/>
             <button onClick={() => addItem('action')}>Add Item</button>
             {items.map((itm, idx) => {
                 if (itm.type === 'action') {
                     return (
                         <div>
-                            <input type="textarea" placeholder={itm.name} onChange={(e) => updateItem(idx, e.target.value)}/>
+                            <input type="textarea" placeholder='new item' value={items[idx].name} onChange={(e) => updateItem(idx, e.target.value)}/>
                             <button className="btn btn-success" onClick={() => deleteItem(idx)}>Delete Item</button>
                             <button onClick={() => moveItem(idx, 'L')}>Left</button>
-                            <button>Like</button>
-                            <button>Dislike</button>
+                            <button onClick={() => addLike(idx)}>Like</button>
+                            <input type="input" value={items[idx].likes}/>
+                            <button onClick={() => addDislike(idx)}>Dislike</button>
+                            <input type="input" value={items[idx].dislikes}/>
                         </div>
                     );
                 }   
-            })}
+            })}        
         </div>
         </>
     );
