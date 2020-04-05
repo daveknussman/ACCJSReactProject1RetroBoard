@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.item-column {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+}
+.item {
+  /* height: 100px;
+  width: 300px;  */
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+}
+.div-actions {
+  flex:1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.center-text {
+  text-align: center;
+}
+.output-value {
+  border:none;
+  background-color: rgba(0, 0, 0, 0);
+  outline: none;
+  width: 15px;
+}
+/* h2 {
+  width:75px;
+} */
+textarea {
+  flex: 2;
+}
+.well {
+  background-color:green;
+}
+.improve {
+  background-color: yellow;
+  /* flex: 5; */
+}
+.action {
+  background-color: red;
+}
+.extra {
+  background-color:blue;
+}
