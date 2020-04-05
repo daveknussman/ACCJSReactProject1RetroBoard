@@ -1,11 +1,11 @@
 import React from 'react';
 
 const TypeItems = ({items, type, del, move, update, like, dislike}) => {
-    console.log(items);
 
     return (
         <>
-            <div class="item extra">
+            <div>
+            {/* <div class="item"> */}
             {items.map((itm, idx) => {
                 if (itm.type === type) {
                     return (
