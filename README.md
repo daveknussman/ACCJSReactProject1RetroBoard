@@ -18,4 +18,4 @@ yarn install
 
 Once yarn is installed, you can start the local development server to run the application
 
-yarn start
+yarn start  
