@@ -46,9 +46,10 @@
   display: flex;
   flex-direction: column;
   justify-content:space-between;
-  border-color: black;
+  boreder:none;
+  /* border-color: black;
   border-width: 2px;
-  border-style: solid;
+  border-style: solid; */
 }
 .item {
   /* height: 100px;
@@ -81,7 +82,7 @@ textarea {
   flex: 2;
 }
 .well {
-  background-color:green;
+  background-color:lightgreen;
 }
 .improve {
   background-color: yellow;
@@ -91,5 +92,5 @@ textarea {
   background-color: red;
 }
 .extra {
-  background-color:blue;
+  background-color:aqua;
 }
